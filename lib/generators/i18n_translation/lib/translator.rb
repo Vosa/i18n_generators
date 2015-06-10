@@ -56,7 +56,7 @@ module I27r
   end
 
   class Translator
-    include GoogleTranslate
+    include BingTranslator
 
     def initialize(lang)
       @lang, @cache = lang, {}
