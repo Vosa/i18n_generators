@@ -56,7 +56,7 @@ module I27r
   end
 
   class Translator
-    include BingTranslator
+    include GoogleTranslator
 
     def initialize(lang)
       @lang, @cache = lang, {}
@@ -67,7 +67,7 @@ module I27r
 
       translated = _translate word, @lang
       if translated.blank? || (translated == word)
-        word
+        word.humanize
       else
         @cache[word] = translated
         translated
@@ -75,7 +75,7 @@ module I27r
     rescue => e
       Rails.logger.debug e
       puts %Q[failed to translate "#{word}" into "#{@lang}" language.]
-      word
+      word.humanize
     end
   end
 end
